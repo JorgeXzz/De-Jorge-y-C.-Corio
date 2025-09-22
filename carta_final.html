@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Aimée</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: url('fondo_estrellas.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      position: absolute;
+      top: 0; /* lo subimos más arriba */
+      font-family: "Brush Script MT", cursive;
+      font-size: 70px;
+      color: #FFD700; /* Amarillo dorado */
+      text-shadow: 
+        0 0 10px #FFD700,
+        0 0 20px #FFD700,
+        0 0 40px #FFA500;
+    }
+
+    .spiderman {
+      position: relative;
+      z-index: 2;
+      max-height: 75vh;
+      margin-top: 80px; /* espacio extra debajo del texto */
+    }
+
+    /* Puntitos de estrellas */
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 8px white, 0 0 15px #FFD700;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(100vw);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Para Aimée</h1>
+  <img src="spiderman_transparente.png" alt="Spiderman" class="spiderman">
+
+  <script>
+    function createStar() {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      document.body.appendChild(star);
+
+      // Posición inicial en el borde superior izquierdo
+      star.style.left = Math.random() * 20 + "vw"; 
+      star.style.top = -10 + "vh";
+
+      // Duración de la animación
+      const duration = Math.random() * 5 + 5;
+      star.style.animationDuration = duration + "s";
+
+      // Eliminar estrella al terminar animación
+      setTimeout(() => {
+        star.remove();
+      }, duration * 1000);
+    }
+
+    // Crear estrellas constantemente
+    setInterval(createStar, 500);
+  </script>
+</body>
+</html>
